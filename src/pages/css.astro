@@ -1,0 +1,27 @@
+---
+import Nav from "../components/nav.astro";
+import * as markdown from "../questions/css-questions.md";
+
+const content = markdown.rawContent();
+
+const questions = content
+  .split("\n")
+  .map((question) => question.substring(2))
+  .filter(Boolean);
+
+const question = questions[Math.floor(Math.random() * questions.length)];
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Astro</title>
+  </head>
+  <body>
+    <Nav />
+    <p>{question}</p>
+  </body>
+</html>
